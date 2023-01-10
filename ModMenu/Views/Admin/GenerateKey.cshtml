@@ -1,0 +1,35 @@
+﻿@model System.Collections.Generic.List<ModMenu>
+
+@{
+    ViewBag.Title = "Gerar uma chave";
+    Layout = "_Layout";
+}
+
+
+<select class="form-select" id="mod">
+   <option selected>Selecione o mod menu</option>
+    @foreach (var mod in Model)
+    {
+        <option value="@mod.Token">@mod.Title</option>
+    }
+ </select>
+<button type="submit" class="btn btn-primary" id="gerar">Gerar key</button>
+    
+<input type="text" class="form-control" name="key" id="key" value="Key aqui" style="width: 26.8rem" readonly>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script >
+    $("#gerar").click(() => {
+        let mod = $("#mod").val()
+        $.ajax({
+             url: "/key",
+             type: 'POST',
+             data: { modmenu: mod },
+             success: function(res) {
+                 alert(res);
+                 $("#key").val(res)
+             }
+        });
+    })
+</script>

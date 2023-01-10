@@ -1,0 +1,28 @@
+﻿@model System.Collections.Generic.List<ModMenu>
+
+@{
+    ViewBag.Title = "Início";
+    Layout = "_Layout";
+}
+
+<h2>
+    Veja todos os mod menus.
+</h2>
+
+@foreach (var mod in Model)
+{
+    <div class="card mb-2">
+        <div class="card-body">
+            <h4 class="mb-1">
+                @mod.Title
+            </h4>
+            <p>@mod.Description</p>
+            <h6 class="mb-2">R$ @mod.Price.ToString().Replace(".", ",")</h6>
+            <a href="">
+                <button class="btn btn-primary">
+                    Comprar agora
+                </button>
+            </a>
+        </div>
+    </div>
+}

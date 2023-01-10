@@ -1,0 +1,32 @@
+﻿@model System.Collections.Generic.List<ModMenu>
+
+@{
+    ViewBag.Title = "Mods";
+    Layout = "_Layout";
+}
+
+@foreach (var mod in Model)
+{
+    <div class="card mb-2">
+        <div class="card-body">
+            <h4 class="mb-1">
+                @mod.Title
+            </h4>
+            <p>@mod.Description</p>
+            <h6 class="mb-2">R$ @mod.Price.ToString().Replace(".", ",")</h6>
+            <div class="d-flex mx-1">
+                <a asp-action="EditMods" asp-route-token="@mod.Token">
+                    <button class="btn btn-primary">
+                        Editar
+                    </button>
+                </a>
+                <form asp-action="ExcludeMod" method="post">
+                    <input type="hidden" name="__Id" value="@mod.Token">
+                    <button class="btn btn-danger">
+                        Excluir
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+}

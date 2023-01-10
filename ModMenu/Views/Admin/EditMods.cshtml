@@ -1,0 +1,24 @@
+﻿@using EditModsResponse = ModMenu.Http.Response.EditModsResponse
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model EditModsResponse
+@{
+    ViewBag.Title = "Editar Mod Menu";
+    Layout = "_Layout";
+}
+
+<div class="card">
+    <div class="card-body p-3">
+        <h2>@Model.ModMenu.Title</h2>
+        
+        <form asp-action="EditModsService" method="post">
+            <input type="hidden" name="__Id" value="@Model.ModMenu.Token" asp-for="dto.Token">
+            <input type="text" class="form-control" asp-for="dto.Title" name="title" id="title" value="@Model.ModMenu.Title" placeholder="Titulo">
+            <input type="text" class="form-control" asp-for="dto.Description" name="description" value="@Model.ModMenu.Description" id="description" placeholder="Descrição">
+            <input type="text" class="form-control" asp-for="dto.Price" name="price" id="price" value="@Model.ModMenu.Price" placeholder="Preço">
+            <input type="text" class="form-control" asp-for="dto.FileName" name="filename" id="filename" value="@Model.ModMenu.FileName" placeholder="Nome do arquivo">
+            <button type="submit" class="btn btn-success">
+                Salvar alterações
+            </button>
+        </form>
+    </div>
+</div>
